@@ -1,0 +1,94 @@
+# ~/.config/starship.toml
+
+# GENERAL SETTINGS
+add_newline = true
+format = "\n$directory$git_branch$git_status$package$nodejs$python$golang$docker$custom_info$cmd_duration$line_break$jobs$character "
+
+# DIRECTORY MODULE
+[directory]
+truncation_length = 3
+truncation_symbol = "…"
+format = "[$path]($style) "
+style = "bold cyan"
+
+# GIT BRANCH MODULE
+[git_branch]
+symbol = " "  # Nerd Font's branch icon
+style = "bold yellow"
+format = "[$symbol$branch]($style) "
+
+# GIT STATUS MODULE
+[git_status]
+conflicted = " "
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕ ${count}"
+untracked = "★"
+stashed = " "
+modified = "✏️ "
+format = "[$all_status]($style) "
+style = "bold red"
+
+# PACKAGE MODULE
+[package]
+symbol = "📦 "
+format = "[$symbol$version]($style) "
+style = "bold blue"
+
+# NODE.JS MODULE
+[nodejs]
+symbol = " "  # Node icon
+style = "bold green"
+format = "[$symbol$version]($style) "
+
+# PYTHON MODULE
+[python]
+symbol = "🐍 "
+style = "bold magenta"
+format = "[$symbol$version]($style) "
+disabled = false
+detect_extensions = ["py"]    # Only show if a Python file is in the directory
+detect_files = ["Pipfile", "pyproject.toml", "requirements.txt", ".python-version"]  # Detect specific Python project files
+detect_virtualenv = true      # Only display if a virtual environment is actually active
+
+# GO MODULE
+[golang]
+symbol = " "
+style = "bold cyan"
+format = "[$symbol$version]($style) "
+
+# DOCKER MODULE
+[docker]
+symbol = "🐳 "
+style = "bold blue"
+format = "[$symbol$context]($style) "
+
+# CUSTOM INFORMATION (Display project-specific files or folders)
+[custom_info]
+format = "[$symbol$project_info]($style) "
+style = "bold yellow"
+disabled = false
+
+# PROJECT FILES MODULE
+[custom_info.project_files]
+symbol = "🔍 "
+files = ["Dockerfile", ".env", "README.md"]
+format = "\n[$symbol $files]($style) "
+
+# CMD DURATION MODULE
+[cmd_duration]
+min_time = 2000  # Show only if command took > 2 seconds
+format = "⏱️ [$duration]($style) "
+style = "bold yellow"
+
+# JOBS MODULE
+[jobs]
+symbol = "🧵 "
+threshold = 2
+style = "bold purple"
+format = "[$symbol$number]($style) "
+
+# CHARACTER MODULE
+[character]
+success_symbol = "[➤](bold green) "
+error_symbol = "[✗](bold red) "
