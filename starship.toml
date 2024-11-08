@@ -44,11 +44,12 @@ format = "[$symbol$version]($style) "
 # PYTHON MODULE
 [python]
 symbol = "🐍 "
-style = "bold magenta"
-format = "[$symbol$version]($style) "
+style = "bold green"
+format = "[<${virtualenv}> $symbol$version ]($style) "  # Display virtualenv name
 disabled = false
 detect_extensions = ["py"]
 detect_files = ["Pipfile", "pyproject.toml", "requirements.txt", ".python-version"]
+# detect_virtualenv = true  # Show only when a virtual environment is active
 
 # GO MODULE
 [golang]
@@ -79,5 +80,5 @@ format = "[$symbol$number]($style) "
 
 # CHARACTER MODULE
 [character]
-success_symbol = "[➤](bold green) "
+success_symbol = "[➤](bold #c5ff05) "
 error_symbol = "[✗](bold red) "
