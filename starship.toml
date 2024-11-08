@@ -2,7 +2,7 @@
 
 # GENERAL SETTINGS
 add_newline = true
-format = "\n$directory$git_branch$git_status$package$nodejs$python$golang$docker$custom_info$cmd_duration$line_break$jobs$character "
+format = "\n$directory$git_branch$git_status$package$nodejs$python$golang$custom_info$cmd_duration$line_break$jobs$character "
 
 # DIRECTORY MODULE
 [directory]
@@ -47,9 +47,8 @@ symbol = "🐍 "
 style = "bold magenta"
 format = "[$symbol$version]($style) "
 disabled = false
-detect_extensions = ["py"]    # Only show if a Python file is in the directory
-detect_files = ["Pipfile", "pyproject.toml", "requirements.txt", ".python-version"]  # Detect specific Python project files
-detect_virtualenv = true      # Only display if a virtual environment is actually active
+detect_extensions = ["py"]
+detect_files = ["Pipfile", "pyproject.toml", "requirements.txt", ".python-version"]
 
 # GO MODULE
 [golang]
@@ -57,23 +56,13 @@ symbol = " "
 style = "bold cyan"
 format = "[$symbol$version]($style) "
 
-# DOCKER MODULE
-[docker]
-symbol = "🐳 "
-style = "bold blue"
-format = "[$symbol$context]($style) "
-
-# CUSTOM INFORMATION (Display project-specific files or folders)
-[custom_info]
-format = "[$symbol$project_info]($style) "
-style = "bold yellow"
-disabled = false
-
-# PROJECT FILES MODULE
-[custom_info.project_files]
+# CUSTOM MODULE for displaying project-specific files
+[custom.project_files]
+command = 'ls | grep -E "Dockerfile|\\.env|README\\.md"'
 symbol = "🔍 "
-files = ["Dockerfile", ".env", "README.md"]
-format = "\n[$symbol $files]($style) "
+style = "bold yellow"
+format = "[$symbol $output]($style) "
+disabled = false
 
 # CMD DURATION MODULE
 [cmd_duration]
