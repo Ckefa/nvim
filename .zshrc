@@ -75,6 +75,28 @@ plugins=(zsh-syntax-highlighting zsh-autosuggestions zsh-history-substring-searc
 source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+
+# Zsh widget to search history with fzf based on the current input
+fzf-history-widget() {
+  # Store the current command line content
+  local current_command="${BUFFER}"
+
+  # Use fzf to filter through history based on current command
+  local selected_command
+  selected_command=$(history 1 | grep -E "^ *[0-9]+ *$current_command" | fzf --height 10 --reverse --border --prompt="History> " | sed 's/^[0-9 ]*//')
+
+  # Replace current buffer with selected command if a command was chosen
+  if [[ -n $selected_command ]]; then
+    BUFFER="$selected_command"
+    CURSOR=${#BUFFER}
+  fi
+  zle redisplay
+}
+
+# Tell zsh to treat this function as a widget
+zle -N fzf-history-widget
+
 
 # User configuration
 
