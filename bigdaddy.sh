@@ -2,6 +2,8 @@
 
 sudo apt install\
 	tmux\
+	bat\
+	less\
 	net-tools \
 	git gcc \
 	ripgrep \

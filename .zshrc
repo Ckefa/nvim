@@ -96,6 +96,7 @@ fzf-history-widget() {
 
 # Tell zsh to treat this function as a widget
 zle -N fzf-history-widget
+bindkey '^r' fzf-history-widget
 
 
 # User configuration
