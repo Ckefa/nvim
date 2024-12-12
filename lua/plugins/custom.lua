@@ -81,7 +81,7 @@ local opts = {
       ensure_installed = {
         "vim", "lua", "vimdoc",
         "html", "css", "python", "javascript", "typescript", "go",
-        "jsx", "tsx",
+        "tsx",
       },
       highlight = { enable = true },
       autotag = { enable = true },
