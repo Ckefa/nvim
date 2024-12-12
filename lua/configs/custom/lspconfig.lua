@@ -1,16 +1,40 @@
 local lspconfig = require "lspconfig"
-
--- EXAMPLE
-local servers = { "ts_ls", "tailwindcss", "eslint" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
--- lsps with default config
+-- List of LSP servers to setup
+local servers = {
+  "ts_ls",        -- TypeScript
+  "tailwindcss",     -- Tailwind CSS
+  "eslint",          -- ESLint
+  "pyright",         -- Python
+  "gopls",           -- Go
+  "html",            -- HTML
+  "jsonls",          -- JSON
+  "lua_ls",          -- Lua
+}
+
 for _, lsp in ipairs(servers) do
+  local settings = {}
+
+  -- Add server-specific settings
+  if lsp == "tsserver" then
+    settings = {
+      documentFormatting = false, -- Example setting
+    }
+  elseif lsp == "gopls" then
+    settings = {
+      gopls = {
+        analyses = { unusedparams = true },
+        staticcheck = true,
+      },
+    }
+  end
+
   lspconfig[lsp].setup {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
+    settings = settings,
   }
 end
-
 
