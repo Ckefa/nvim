@@ -20,6 +20,8 @@ local opts = {
         "stylua",                      -- Lua Formatter
         "goimports",                   -- Go Imports Formatter
         "golines",                     -- Go Lines Formatter
+        "gofumpt",
+        "goimports-reviser",
 
         -- Linters
         "pylint",                      -- Python Linter
