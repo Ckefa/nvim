@@ -74,7 +74,7 @@ plugins=(zsh-syntax-highlighting zsh-autosuggestions zsh-history-substring-searc
 
 source $ZSH/oh-my-zsh.sh
 
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 # Zsh widget to search history with fzf based on the current input
