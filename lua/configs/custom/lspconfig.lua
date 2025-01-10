@@ -6,7 +6,7 @@ local servers = {
 	"ts_ls", -- TypeScript
 	"tailwindcss", -- Tailwind CSS
 	"eslint", -- ESLint
-	"pyright", -- Python
+	"pylsp", -- Python
 	"gopls", -- Go
 	"html", -- HTML
 	"jsonls", -- JSON

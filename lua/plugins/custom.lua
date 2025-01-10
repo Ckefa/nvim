@@ -9,11 +9,14 @@ local opts = {
         "typescript-language-server",  -- TypeScript LSP
         "tailwindcss-language-server", -- Tailwind LSP
         "eslint-lsp",                  -- ESLint LSP
+        "python-lsp-server",           -- Python LSP
         "pyright",                     -- Python LSP
         "gopls",                       -- Go LSP
         "html-lsp",                    -- HTML LSP
         "json-lsp",                    -- JSON LSP
         "lua-language-server",         -- Lua LSP
+        "dockerfile-language-server",
+        "docker-compose-language-service",
 
         -- Formatters
         "prettierd",                   -- Prettier Formatter
