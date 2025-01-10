@@ -29,3 +29,10 @@ if [[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]]; then
 else
     echo "Zsh Auto-suggestions is already installed. Skipping."
 fi
+
+if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-history-substring-search" ]]; then
+    echo "Installing Zsh History Substring Search..."
+    git clone https://github.com/zsh-users/zsh-history-substring-search.git "$ZSH_CUSTOM/plugins/zsh-history-substring-search"
+else
+    echo "Zsh History Substring Search is already installed. Skipping."
+fi
