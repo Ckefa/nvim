@@ -31,7 +31,7 @@ bindkey '^r' fzf-history-widget
 bindkey -v;
 
 # Accept autosuggest-accept
-bindkey '^E' forward-word
+bindkey '^F' forward-word
 bindkey '^E' end-of-line
 bindkey '^E' autosuggest-accept
 
