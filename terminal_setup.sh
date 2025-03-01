@@ -36,5 +36,13 @@ if ! grep -q "plugins=(git zsh-autosuggestions zsh-syntax-highlighting)" "$ZSHRC
     echo 'plugins=(git zsh-autosuggestions zsh-syntax-highlighting)' >> "$ZSHRC_FILE"
 fi
 
-# Step 9: Finish and Notify
+# Step 9: Copy and source config files
+echo "Copying config files to $HOME"
+cp -r $HOME/.config/nvim/{.zshrc,.tmux.conf} $HOME
+echo "Sourcing zshrc"
+source $HOME/.zshrc
+echo "Sourcing $HOME/.tmux.conf"
+tmux source $HOME/.tmux.conf
+
+# Step 10: Finish and Notify
 echo "Installation complete! Please restart your terminal to apply the changes."
