@@ -17,37 +17,38 @@ vim.g.mapleader = " "
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("HighlightYank", {}),
-  callback = function()
-    vim.highlight.on_yank({
-      higroup = "IncSearch", -- Highlight group to use
-      timeout = 200,         -- Duration of highlight in milliseconds
-    })
-  end,
+	group = vim.api.nvim_create_augroup("HighlightYank", {}),
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "IncSearch", -- Highlight group to use
+			timeout = 200, -- Duration of highlight in milliseconds
+		})
+	end,
 })
 
 -- Bootstrap lazy.nvim and all plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.uv.fs_stat(lazypath) then
-  local repo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system({ "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath })
+	local repo = "https://github.com/folke/lazy.nvim.git"
+	vim.fn.system({ "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath })
 end
 
 vim.opt.rtp:prepend(lazypath)
+vim.opt.relativenumber = true
 
 local lazy_config = require("configs.lazy")
 
 -- Load plugins
 require("lazy").setup({
-  {
-    "NvChad/NvChad",
-    lazy = false,
-    branch = "v2.5",
-    import = "nvchad.plugins",
-  },
-  { import = "plugins" },
-  { import = "plugins.custom" },
+	{
+		"NvChad/NvChad",
+		lazy = false,
+		branch = "v2.5",
+		import = "nvchad.plugins",
+	},
+	{ import = "plugins" },
+	{ import = "plugins.custom" },
 }, lazy_config)
 
 -- Load theme
@@ -58,5 +59,5 @@ require("options")
 require("nvchad.autocmds")
 
 vim.schedule(function()
-  require("mappings")
+	require("mappings")
 end)

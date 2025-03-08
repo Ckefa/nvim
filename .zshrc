@@ -37,3 +37,4 @@ bindkey '^E' autosuggest-accept
 
 # Development Configs
 export PATH="$PATH:$(go env GOPATH)/bin"
+export EDITOR=nvim
