@@ -26,6 +26,35 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Diagnostics Config
+vim.diagnostic.config({
+	virtual_text = false, -- Disable inline virtual text
+	signs = true, -- Show signs in the sign column
+	underline = true, -- Underline the error line
+	update_in_insert = false,
+	severity_sort = true,
+})
+
+-- Floating diagnostics Message on Floating Window
+vim.o.updatetime = 250 -- Faster updates for diagnostics
+
+vim.api.nvim_create_autocmd("CursorHold", {
+	pattern = "*",
+	callback = function()
+		vim.diagnostic.open_float(nil, { focusable = false })
+	end,
+})
+-- Show diagnostics in the command line when cursor is on an error
+vim.api.nvim_create_autocmd("CursorHold", {
+	pattern = "*",
+	callback = function()
+		local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+		if #diagnostics > 0 then
+			vim.cmd("echohl WarningMsg | echom '" .. diagnostics[1].message .. "' | echohl None")
+		end
+	end,
+})
+
 -- Bootstrap lazy.nvim and all plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
