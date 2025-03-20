@@ -55,6 +55,24 @@ vim.api.nvim_create_autocmd("CursorHold", {
 	end,
 })
 
+-- Copy Diagnostics to Clipboard
+vim.api.nvim_create_user_command("CopyDiagnostic", function()
+	local pos = vim.api.nvim_win_get_cursor(0)
+	local line, col = pos[1] - 1, pos[2] -- Get cursor position (0-based line)
+
+	local diagnostics = vim.diagnostic.get(0, { lnum = line }) -- Get all diagnostics on this line
+	for _, diag in ipairs(diagnostics) do
+		if col >= diag.col and col < diag.end_col then -- Check if cursor is inside this diagnostic
+			vim.fn.setreg("+", diag.message) -- Copy to clipboard
+			print("Copied Diagnostic: " .. diag.message)
+			return
+		end
+	end
+	print("No diagnostic found under cursor")
+end, {})
+-- Copy Diagnostics keymap
+vim.keymap.set("n", "<leader>cd", "<cmd>CopyDiagnostic<CR>", { desc = "Copy diagnostic under cursor" })
+
 -- Bootstrap lazy.nvim and all plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
