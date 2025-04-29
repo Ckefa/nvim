@@ -1,0 +1,148 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "spacing": 4,
+  "modules-left": [
+    "custom/launcher",
+    "wlr/workspaces",
+    "tray"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "cpu",
+    "memory",
+    "temperature",
+    "battery",
+    "custom/power"
+  ],
+  
+  // Custom launcher module
+  "custom/launcher": {
+    "format": "🚀",
+    "tooltip": false,
+    "on-click": "rofi -show drun",
+    "on-click-right": "rofi -show run"
+  },
+  
+  // Workspaces module
+  "wlr/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "active-only": false,
+    "format-icons": {
+      "1": "1️⃣",
+      "2": "2️⃣",
+      "3": "3️⃣",
+      "4": "4️⃣",
+      "5": "5️⃣",
+      "6": "6️⃣",
+      "7": "7️⃣",
+      "8": "8️⃣",
+      "9": "9️⃣",
+      "urgent": "❗",
+      "focused": "⭐",
+      "default": "🔘"
+    },
+    "sort-by-number": true
+  },
+  
+  // System tray
+  "tray": {
+    "icon-size": 18,
+    "spacing": 8
+  },
+  
+  // Clock module
+  "clock": {
+    "interval": 60,
+    "format": "{:%a, %d %b %Y | 🕒 %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}"
+  },
+  
+  // PulseAudio module
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon}🎧 {volume}%",
+    "format-muted": "🔇 Muted",
+    "format-icons": {
+      "headphone": "🎧",
+      "hands-free": "📞",
+      "headset": "🎤",
+      "phone": "📱",
+      "portable": "📱",
+      "car": "🚗",
+      "default": ["🔈", "🔊"]
+    },
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  },
+  
+  // Network module
+  "network": {
+    "interval": 5,
+    "format-wifi": "📶 {essid} ({signalStrength}%)",
+    "format-ethernet": "🔌 {ifname}",
+    "format-disconnected": "🌐 Disconnected",
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+    "on-click": "nm-connection-editor"
+  },
+  
+  // CPU module
+  "cpu": {
+    "interval": 5,
+    "format": "🧠 {usage}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+  
+  // Memory module
+  "memory": {
+    "interval": 5,
+    "format": "💾 {used:0.1f}G/{total:0.1f}G",
+    "format-alt": "💾 {percentage}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+  
+  // Temperature module
+  "temperature": {
+    "interval": 5,
+    "critical-threshold": 80,
+    "format": "🌡️ {temperatureC}°C",
+    "format-critical": "🔥 {temperatureC}°C",
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input"
+  },
+  
+  // Battery module
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "⚡ {capacity}%",
+    "format-plugged": "🔌 {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["🪫", "🔋", "🔋", "🔋", "🔋"],
+    "tooltip-format": "{timeTo} {icon}"
+  },
+  
+  // Custom power menu
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "wlogout",
+    "tooltip": false
+  }
+}

@@ -1,18 +1,17 @@
 #!/bin/bash
 
-# Ensure script is run with superuser privileges
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root"
-    exit 1
-fi
-
 # Step 1: Update the system
 echo "Updating the system..."
-pacman -Syu --noconfirm
+sudo yay -Syyu --noconfirm
 
-# Step 2: Install Zsh
-echo "Installing Zsh..."
-pacman -S zsh --noconfirm
+echo "Installing apps"
+./apps_install.sh;
+
+echo "Setting up Zsh"
+./zsh_plugins.sh;
+
+echo "Installing fonts"
+yay -S ttf-hack-nerd noto-fonts-emoji ttf-nerd-fonts-symbols --noconfirm;
 
 # Step 3: Make Zsh the default shell
 echo "Setting Zsh as the default shell..."
@@ -21,10 +20,6 @@ if [[ "$(echo $SHELL)" != "$(which zsh)" ]]; then
 else
     echo "Zsh is already the default shell."
 fi
-
-# Step 4: Install Git
-echo "Installing Git..."
-pacman -S git --noconfirm
 
 # Step 8: Modify the .zshrc file
 echo "Configuring .zshrc..."
@@ -39,6 +34,10 @@ fi
 # Step 9: Copy and source config files
 echo "Copying config files to $HOME"
 cp -r $HOME/.config/nvim/{.zshrc,.tmux.conf} $HOME
+echo "Copying config waybar Config"
+cp -r $HOME/.config/nvim/waybar/ $HOME/.config
+echo "Copying config sway Config"
+sudo cp $HOME/.config/nvim/sway.config /etc/sway/config
 echo "Sourcing zshrc"
 source $HOME/.zshrc
 echo "Sourcing $HOME/.tmux.conf"
