@@ -11,6 +11,7 @@ local servers = {
 	"html", -- HTML
 	"jsonls", -- JSON
 	"lua_ls", -- Lua
+	"csharp_ls", -- C#
 }
 
 for _, lsp in ipairs(servers) do

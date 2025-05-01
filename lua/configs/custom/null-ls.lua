@@ -6,9 +6,10 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local opts = {
 	sources = {
-    null_ls.builtins.formatting.gofumpt,
-    null_ls.builtins.formatting.goimports_reviser,
-    null_ls.builtins.formatting.golines,
+		null_ls.builtins.formatting.gofumpt,
+		null_ls.builtins.formatting.goimports_reviser,
+		null_ls.builtins.formatting.golines,
+		null_ls.builtins.formatting.csharpier,
 		null_ls.builtins.formatting.prettierd, -- Configure PrettierD
 	},
 	on_attach = function(client, bufnr)
