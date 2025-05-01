@@ -45,15 +45,15 @@ vim.api.nvim_create_autocmd("CursorHold", {
 	end,
 })
 -- Show diagnostics in the command line when cursor is on an error
-vim.api.nvim_create_autocmd("CursorHold", {
-	pattern = "*",
-	callback = function()
-		local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
-		if #diagnostics > 0 then
-			vim.cmd("echohl WarningMsg | echom '" .. diagnostics[1].message .. "' | echohl None")
-		end
-	end,
-})
+-- vim.api.nvim_create_autocmd("CursorHold", {
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+-- 		if #diagnostics > 0 then
+-- 			vim.cmd("echohl WarningMsg | echom '" .. diagnostics[1].message .. "' | echohl None")
+-- 		end
+-- 	end,
+-- })
 
 -- Copy Diagnostics to Clipboard
 vim.api.nvim_create_user_command("CopyDiagnostic", function()
