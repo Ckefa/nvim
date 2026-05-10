@@ -3,8 +3,6 @@ local nvlsp = require("nvchad.configs.lspconfig")
 -- List of LSP servers to setup
 local servers = {
 	"ts_ls", -- TypeScript
-	"tailwindcss", -- Tailwind CSS
-	"eslint", -- ESLint
 	"pylsp", -- Python
 	"gopls", -- Go
 	"html", -- HTML
@@ -39,4 +37,5 @@ for _, lsp in ipairs(servers) do
 		capabilities = nvlsp.capabilities,
 		settings = settings,
 	})
+	vim.lsp.enable(lsp)
 end
