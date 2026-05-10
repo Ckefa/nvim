@@ -80,7 +80,7 @@ local opts = {
 	-- Treesitter for language parsing
 	{
 		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
+		build = ":TSUpdate | TSInstallAll",
 		opts = {
 			ensure_installed = {
 				"vim",
@@ -98,6 +98,9 @@ local opts = {
 			highlight = { enable = true },
 			autotag = { enable = true },
 		},
+		config = function(_, opts)
+			require("nvim-treesitter.config").setup(opts)
+		end,
 	},
 
 	-- Surround text management

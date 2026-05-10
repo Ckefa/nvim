@@ -1,4 +1,3 @@
-local lspconfig = require("lspconfig")
 local nvlsp = require("nvchad.configs.lspconfig")
 
 -- List of LSP servers to setup
@@ -18,7 +17,7 @@ for _, lsp in ipairs(servers) do
 	local settings = {}
 
 	-- Add server-specific settings
-	if lsp == "tsserver" then
+	if lsp == "ts_ls" then
 		settings = {
 			documentFormatting = false, -- Example setting
 		}
@@ -34,7 +33,7 @@ for _, lsp in ipairs(servers) do
 		}
 	end
 
-	lspconfig[lsp].setup({
+	vim.lsp.config(lsp, {
 		on_attach = nvlsp.on_attach,
 		on_init = nvlsp.on_init,
 		capabilities = nvlsp.capabilities,
