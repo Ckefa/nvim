@@ -12,17 +12,14 @@ return {
 
 		harpoon:setup()
 
-		-- Add current file to harpoon list
 		vim.keymap.set("n", "<leader>a", function()
 			harpoon:list():add()
 		end, { desc = "Harpoon add file" })
 
-		-- Toggle harpoon menu
 		vim.keymap.set("n", "<C-e>", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end, { desc = "Harpoon menu" })
 
-		-- Navigate to harpoon files with leader + number
 		vim.keymap.set("n", "<leader>1", function()
 			harpoon:list():select(1)
 		end, { desc = "Harpoon file 1" })
